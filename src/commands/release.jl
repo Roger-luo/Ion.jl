@@ -225,7 +225,8 @@ function update_version!(project::ProjectToRelease)
     print(" ")
     printstyled("✔"; color=:light_green)
     print("  Project.toml has been updated to ")
-    printstyled(project.release_version; color=light_cyan)
+    printstyled(project.release_version; color=:light_cyan)
+    println()
     return project
 end
 
@@ -272,7 +273,7 @@ function commit_version_update(project::ProjectToRelease)
     @info "commit version updates" project
     redirect_stdout(devnull) do
         run(`$(git()) add $(project.toml)`)
-        run(`$(git()) commit -m"bump version to $(project.version)"`)
+        run(`$(git()) commit -m"bump version to $(project.release_version)"`)
     end
 end
 
