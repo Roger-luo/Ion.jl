@@ -76,7 +76,7 @@ release a package.
 - `-b, --branch <branch name>`: branch you want to register.
 - `--note <release note>`: optional, release note you would like to specify.
 """
-function release(version_spec::String, path::String=pwd();
+@cast function release(version_spec::String, path::String=pwd();
         registry::String="",
         branch::String=current_branch(path),
         note::String="", debug::Bool=false,

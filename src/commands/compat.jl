@@ -1,18 +1,51 @@
-function compat(version_spec::String="auto", path_to_project::String=pwd(); package::String="")
+"""
+create compat in `Project.toml`. Update the compat to latest non-breaking
+version by semantic version definition (latest minor version for `0.x.y`,
+latest major version for other case).
+
+# Arguments
+
+- `version_spec`: version_spec to be compatible with, can be `patch`, `minor`, `major` or `auto`.
+- `path_to_project`: path to the project, default is the current working directory.
+
+# Options
+
+- `-p,--package=<name>`: package selector, use this option to update specified package compat only.
+
+# Flags
+
+- `--overwrite`: force update all compat by overwrite old compat.
+"""
+@cast function compat(version_spec::String="auto", path_to_project::String=pwd(); package::String="", overwrite::Bool=false)
     toml = Base.current_project(path_to_project)
     toml === nothing && cmd_error("cannot find (Julia)Project.toml in $path_to_project")
+    d = TOML.parsefile(toml)
+    compat = get!(Dict{String, String}, d, "compat")
     env = Pkg.Types.EnvCache(toml)
-    compat = Dict{String, String}()
     for (name, uuid) in env.project.deps
         isempty(package) || package == name || continue
         env.manifest[uuid].version isa VersionNumber || continue # skip stdlib
-        compat[name] = compat_version(env.manifest[uuid].version, version_spec)
+        update_compat!(compat, name, env.manifest[uuid].version, version_spec, overwrite)
     end
-    compat["julia"] = compat_version(VERSION, version_spec)
-    d = TOML.parsefile(toml)
-    d["compat"] = merge(d["compat"], compat)
+    update_compat!(compat, "julia", VERSION, version_spec, overwrite)
     write_project_toml(toml, d)
     return
+end
+
+function update_compat!(compat::Dict{String, String}, name::String, version::String, version_spec::String, overwrite::Bool)
+    compat_spec = compat_version(version, version_spec)
+    compat[name] = if overwrite
+        compat_spec
+    else
+        append_compat_spec(compat, name, compat_spec)
+    end
+    return compat
+end
+
+function append_compat_spec(compat::Dict{String, String}, name::String, spec::String)
+    haskey(compat, name) || return spec
+    # TODO: use more compact format, e.g x.y.z-a.b.c
+    return string(compat[name], ", ", spec)
 end
 
 function compat_version(version::VersionNumber, version_spec::String)

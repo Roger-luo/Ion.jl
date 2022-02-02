@@ -1,4 +1,19 @@
-function clone(package_or_url::String, to::String=pwd(); force::Bool=false)
+"""
+Clone a package or remote URL to a local directory. Corresponding
+package or repo name will automatically remote the `.jl` extension
+if it has one, e.g `https://github.com/JuliaLang/Example.jl` will
+be downloaded as `Example`.
+
+# Arguments
+
+- `package_or_url`: package name or URL.
+- `to`: local directory to download the git repo to.
+
+# Flags
+
+- `-f,--force`: force overwrite existing path.
+"""
+@cast function clone(package_or_url::String, to::String=pwd(); force::Bool=false)
     ispath(to) || mkpath(to)
     if isurl(package_or_url)
         clone_url(package_or_url, to, force)
