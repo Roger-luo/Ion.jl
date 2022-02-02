@@ -3,11 +3,35 @@ uuid = "7af61b63-3605-4a09-9f2a-66549776f7ba"
 authors = ["Roger-Luo <rogerluo.rl18@gmail.com> and contributors"]
 version = "0.1.0"
 
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+[deps]
+Comonicon = "863f3e99-da2a-4334-8734-de3dacbe5542"
+Configurations = "5218b696-f38b-4ac9-8b61-a12ec717816d"
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+FilePaths = "8fc22ac5-c921-52a6-82fd-178b2807b824"
+GarishPrint = "b0ab02a7-8576-43f7-aa76-eaa7c3897c54"
+Git = "d7ba0133-e1db-5d97-8f8c-041e4b3a1eb2"
+GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
+Glob = "c27321d9-0574-5035-807b-f59d2c89b15c"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+TestEnv = "1e6cf692-eddd-4d53-88a5-2d735e33781b"
+UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 
 [compat]
-julia = "1.7.1"
+Comonicon = "0.12"
+Configurations = "0.17"
+FilePaths = "0.8"
+GarishPrint = "0.5"
+Git = "1"
+GitHub = "5"
+Glob = "1"
+HTTP = "0.9"
+TestEnv = "1"
+julia = "1.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Test"]

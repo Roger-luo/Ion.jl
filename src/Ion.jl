@@ -1,5 +1,8 @@
 module Ion
 
-# Write your package code here.
+using Comonicon
+
+include("internal.jl")
+include("repl.jl")
 
 end

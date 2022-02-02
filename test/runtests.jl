@@ -1,6 +1,6 @@
 using Ion
 using Test
 
-@testset "Ion.jl" begin
-    # Write your tests here.
+@testset "release" begin
+    include("commands/release.jl")
 end
