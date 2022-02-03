@@ -61,6 +61,13 @@ Base.show(io::IO, ::MIME"text/plain", x::ProjectToRelease) = GarishPrint.pprint_
 """
 release a package.
 
+# Intro
+
+This command can release packages and auto bump versions for you
+semantically. One will not need to remember how to type `JuliaRegistrator`
+correctly but just use `ion release patch` under the package folder. Or
+via the REPL interface as `Ion.release("patch")`
+
 # Arguments
 
 - `version_spec`: version number you want to release. Can be a specific version, "current"

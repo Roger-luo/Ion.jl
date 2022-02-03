@@ -1,7 +1,13 @@
 """
-create compat in `Project.toml`. Update the compat to latest non-breaking
-version by semantic version definition (latest minor version for `0.x.y`,
-latest major version for other case).
+    compat(version_spec::String="auto", path_to_project::String=pwd(); package::String="", overwrite::Bool=false)
+
+create and update compat in `Project.toml` via command line.
+
+# Intro
+
+By default the auto update the compat to latest non-breaking version by semantic version definition
+(latest minor version for `0.x.y`, latest major version for other case). One can select only updating
+specific packages by using the `package` option.
 
 # Arguments
 

@@ -1,8 +1,15 @@
 """
-Clone a package or remote URL to a local directory. Corresponding
-package or repo name will automatically remote the `.jl` extension
-if it has one, e.g `https://github.com/JuliaLang/Example.jl` will
-be downloaded as `Example`.
+    clone(package_or_url::String, to::String=pwd(); force::Bool=false)
+
+Clone a package or remote URL to a local directory. 
+
+# Intro
+
+This command helps you clone a remote package repo from github.
+The corresponding package or repo name will automatically remove
+the `.jl` extension if it has one, e.g `https://github.com/JuliaLang/Example.jl`
+will be downloaded as `Example`. And when cloning a repo that has
+no write access, it will prompt to ask for a fork.
 
 # Arguments
 

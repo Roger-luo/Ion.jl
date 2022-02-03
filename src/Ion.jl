@@ -2,6 +2,8 @@ module Ion
 
 using Comonicon
 
+export patch, minor, major, current
+
 include("internal.jl")
 include("repl.jl")
 
