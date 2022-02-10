@@ -34,7 +34,7 @@ function release(
         version_spec::Union{VersionSpec, VersionNumber, String},
         path::String=pwd();
         registry::String="",
-        branch::String=current_branch(path),
+        branch::String=Internal.current_branch(path),
         note::String="", debug::Bool=false,
     )
 

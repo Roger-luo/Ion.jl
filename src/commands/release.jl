@@ -278,9 +278,11 @@ end
 
 function commit_version_update(project::ProjectToRelease)
     @info "commit version updates" project
-    redirect_stdout(devnull) do
-        run(`$(git()) add $(project.toml)`)
-        run(`$(git()) commit -m"bump version to $(project.release_version)"`)
+    cd(project.path) do
+        redirect_stdout(devnull) do
+            run(`$(git()) add $(project.toml)`)
+            run(`$(git()) commit -m"bump version to $(project.release_version)"`)
+        end
     end
 end
 

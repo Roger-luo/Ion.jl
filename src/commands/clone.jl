@@ -42,7 +42,7 @@ end
 function clone_package(package::String, to::String, force::Bool)
     info = find_package(package)
     isnothing(info) && cmd_error("cannot find $package in local registries")
-    pkg_toml = TOML.parsefile(joinpath(info.reg.path, info.path, "Package.toml"))
+    pkg_toml = get_registry_file(info.reg, joinpath(info.path, "Package.toml"))
     _clone(pkg_toml["repo"], joinpath(to, pkg_toml["name"]), force)
     return
 end
