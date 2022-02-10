@@ -22,10 +22,14 @@ no write access, it will prompt to ask for a fork.
 """
 @cast function clone(package_or_url::String, to::String=pwd(); force::Bool=false)
     ispath(to) || mkpath(to)
-    if isurl(package_or_url)
-        clone_url(package_or_url, to, force)
-    else
-        clone_package(package_or_url, to, force)
+    try
+        if isurl(package_or_url)
+            clone_url(package_or_url, to, force)
+        else
+            clone_package(package_or_url, to, force)
+        end
+    catch e
+        cmd_error("fail to clone $package_or_url")
     end
     return
 end
