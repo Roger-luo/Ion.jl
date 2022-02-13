@@ -22,10 +22,14 @@ no write access, it will prompt to ask for a fork.
 """
 @cast function clone(package_or_url::String, to::String=pwd(); force::Bool=false)
     ispath(to) || mkpath(to)
-    if isurl(package_or_url)
-        clone_url(package_or_url, to, force)
-    else
-        clone_package(package_or_url, to, force)
+    try
+        if isurl(package_or_url)
+            clone_url(package_or_url, to, force)
+        else
+            clone_package(package_or_url, to, force)
+        end
+    catch e
+        cmd_error("fail to clone $package_or_url")
     end
     return
 end
@@ -42,7 +46,7 @@ end
 function clone_package(package::String, to::String, force::Bool)
     info = find_package(package)
     isnothing(info) && cmd_error("cannot find $package in local registries")
-    pkg_toml = TOML.parsefile(joinpath(info.reg.path, info.path, "Package.toml"))
+    pkg_toml = get_registry_file(info.reg, joinpath(info.path, "Package.toml"))
     _clone(pkg_toml["repo"], joinpath(to, pkg_toml["name"]), force)
     return
 end
@@ -71,6 +75,8 @@ function _clone(url::String, to::String, force::Bool)
         redirect_stdio(;stdout=devnull, stderr=devnull) do
             git_set_upstream(to; url)
         end
+    else # no access only clone
+        git_clone(url, to)
     end
     return
 end
