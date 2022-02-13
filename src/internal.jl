@@ -11,7 +11,7 @@ using Distributed
 using Configurations
 # using Glob: FilenameMatch, ismatch
 using Comonicon.Tools: prompt
-
+using Blueprints: Context
 @static if Sys.which("git") === nothing # no system git
     using Git: git
 else
