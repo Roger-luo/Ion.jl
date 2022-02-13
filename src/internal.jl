@@ -6,6 +6,7 @@ using UUIDs
 using GitHub
 # using TestEnv
 using Comonicon
+using Blueprints
 using GarishPrint
 using Distributed
 using Configurations
@@ -13,7 +14,7 @@ using Configurations
 using Comonicon.Tools: prompt
 
 include("utils/utils.jl")
-
+include("blueprints.jl")
 # commands
 include("commands/release.jl")
 include("commands/clone.jl")
