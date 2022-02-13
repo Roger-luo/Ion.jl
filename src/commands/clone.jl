@@ -75,6 +75,8 @@ function _clone(url::String, to::String, force::Bool)
         redirect_stdio(;stdout=devnull, stderr=devnull) do
             git_set_upstream(to; url)
         end
+    else # no access only clone
+        git_clone(url, to)
     end
     return
 end

@@ -1,7 +1,6 @@
 module Internal
 
 using Pkg
-using Git
 using UUIDs
 using GitHub
 # using TestEnv
@@ -11,6 +10,12 @@ using Distributed
 using Configurations
 # using Glob: FilenameMatch, ismatch
 using Comonicon.Tools: prompt
+
+@static if Sys.which("git") === nothing # no system git
+    using Git: git
+else
+    git() = Sys.which("git")
+end
 
 include("utils/utils.jl")
 
