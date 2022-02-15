@@ -367,6 +367,7 @@ function register(::PRN"General", project::ProjectToRelease)
     printstyled("✔"; color=:light_green)
     println("  JuliaRegistrator has been summoned, check it in the following URL:")
     printstyled("  ", comment.html_url; color=:cyan)
+    println()
     return comment
 end
 
