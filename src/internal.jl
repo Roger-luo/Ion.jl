@@ -5,12 +5,13 @@ using UUIDs
 using GitHub
 # using TestEnv
 using Comonicon
+using Blueprints
 using GarishPrint
 using Distributed
 using Configurations
 # using Glob: FilenameMatch, ismatch
 using Comonicon.Tools: prompt
-
+using Blueprints: Context
 @static if Sys.which("git") === nothing # no system git
     using Git: git
 else
@@ -18,7 +19,7 @@ else
 end
 
 include("utils/utils.jl")
-
+include("blueprints.jl")
 # commands
 include("commands/release.jl")
 include("commands/clone.jl")

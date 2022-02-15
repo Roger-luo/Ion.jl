@@ -4,6 +4,7 @@ authors = ["Roger-Luo <rogerluo.rl18@gmail.com> and contributors"]
 version = "0.1.0"
 
 [deps]
+Blueprints = "2affac1c-84e5-11ec-39ef-558eb22bdd90"
 Comonicon = "863f3e99-da2a-4334-8734-de3dacbe5542"
 Configurations = "5218b696-f38b-4ac9-8b61-a12ec717816d"
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
