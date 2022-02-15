@@ -1,4 +1,4 @@
-@option struct License <: MustacheBlueprint
+@blueprint struct License <: MustacheBlueprint
     template_dir::String = default_template("licenses")
     name::String = "MIT"
 end

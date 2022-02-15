@@ -1,4 +1,4 @@
-@option struct SrcDir <: MustacheBlueprint
+@blueprint struct SrcDir <: MustacheBlueprint
     template::TemplateFile = TemplateFile(path="src", file="module.jl")
 end
 

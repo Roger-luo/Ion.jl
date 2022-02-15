@@ -1,4 +1,4 @@
-@option struct Citation <: MustacheBlueprint
+@blueprint struct Citation <: MustacheBlueprint
     template::String = TemplateFile(file="CITATION.bib")
     readme::Bool = false
 end

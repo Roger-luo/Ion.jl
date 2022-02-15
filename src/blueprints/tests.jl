@@ -1,7 +1,7 @@
 const TEST_UUID = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 const TEST_DEP = PackageSpec(; name="Test", uuid=TEST_UUID)
 
-@option struct ProjectTest <: MustacheBlueprint
+@blueprint struct ProjectTest <: MustacheBlueprint
     template::TemplateFile = TemplateFile(path="test", file="runtests.jl")
     project::Bool = false
 end

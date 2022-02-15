@@ -1,4 +1,4 @@
-@option struct Documenter
+@blueprint struct Documenter
     assets::Vector{String}
     # logo should be user input from interface
     make_jl::String # make.jl template
