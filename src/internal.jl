@@ -3,6 +3,7 @@ module Internal
 using Pkg
 using UUIDs
 using GitHub
+using LazyModules: @lazy
 # using TestEnv
 using Comonicon
 using GarishPrint
@@ -25,6 +26,7 @@ include("commands/clone.jl")
 include("commands/compat.jl")
 include("commands/create.jl")
 include("commands/package.jl")
+include("commands/format.jl")
 # include("commands/test.jl")
 
 # fix redirect color issue
