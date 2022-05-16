@@ -19,14 +19,15 @@ no write access, it will prompt to ask for a fork.
 # Flags
 
 - `-f,--force`: force overwrite existing path.
+- `-y,--yes`: skip prompt with answer yes.
 """
-@cast function clone(package_or_url::String, to::String=pwd(); force::Bool=false)
+@cast function clone(package_or_url::String, to::String=pwd(); force::Bool=false, yes::Bool=false)
     ispath(to) || mkpath(to)
     try
         if isurl(package_or_url)
-            clone_url(package_or_url, to, force)
+            clone_url(package_or_url, to, force, yes)
         else
-            clone_package(package_or_url, to, force)
+            clone_package(package_or_url, to, force, yes)
         end
     catch e
         cmd_error("fail to clone $package_or_url")
@@ -34,25 +35,25 @@ no write access, it will prompt to ask for a fork.
     return
 end
 
-function clone_url(url::String, to::String, force::Bool)
+function clone_url(url::String, to::String, force::Bool, yes::Bool)
     if endswith(url, "jl.git")
-        _clone(url, joinpath(to, basename(url)[1:end-7]), force)
+        _clone(url, joinpath(to, basename(url)[1:end-7]), force, yes)
     else
-        _clone(url, joinpath(to, basename(url)), force)
+        _clone(url, joinpath(to, basename(url)), force, yes)
     end
     return
 end
 
-function clone_package(package::String, to::String, force::Bool)
+function clone_package(package::String, to::String, force::Bool, yes::Bool)
     info = find_package(package)
     isnothing(info) && cmd_error("cannot find $package in local registries")
     pkg_toml = get_registry_file(info.reg, joinpath(info.path, "Package.toml"))
-    _clone(pkg_toml["repo"], joinpath(to, pkg_toml["name"]), force)
+    _clone(pkg_toml["repo"], joinpath(to, pkg_toml["name"]), force, yes)
     return
 end
 
 
-function _clone(url::String, to::String, force::Bool)
+function _clone(url::String, to::String, force::Bool, yes::Bool)
     force && ispath(to) && rm(to; force=true, recursive=true)
     username = readchomp(`git config user.name`)
     auth = GitHub.authenticate(read_github_auth())
@@ -67,7 +68,7 @@ function _clone(url::String, to::String, force::Bool)
 
     if has_access
         git_clone(url, to)
-    elseif prompt("do not have access to $url, fork?")
+    elseif prompt("do not have access to $url, fork?"; yes)
         @info "fork upstream repo: $(rp.full_name)"
         owned_repo = create_fork(rp; auth)
         git_clone(owned_repo.clone_url.uri, to)

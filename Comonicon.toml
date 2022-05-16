@@ -10,3 +10,6 @@ optimize=2
 static=true
 width=80
 dash=false
+
+[sysimg.precompile]
+execution_file=["deps/execute.jl"]
