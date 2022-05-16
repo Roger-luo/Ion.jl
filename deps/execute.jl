@@ -9,5 +9,5 @@ Ion.command_main(["format", "-h"])
 cd(tempdir()) do
     Ion.command_main(["clone", "Bloqade", "-f", "-y"])
     Ion.command_main(["format", "Bloqade"])
-    Ion.command_main(["create", "FakePkg"])
+    Ion.command_main(["create", "FakePkg", "-f"])
 end
