@@ -24,6 +24,7 @@ include("commands/release.jl")
 include("commands/clone.jl")
 include("commands/compat.jl")
 include("commands/create.jl")
+include("commands/package.jl")
 # include("commands/test.jl")
 
 # fix redirect color issue
