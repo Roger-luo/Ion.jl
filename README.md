@@ -32,6 +32,33 @@ For current master:
 pkg> add Ion#master
 ```
 
+## Installation of the CLI
+
+If you would like to install the CLI, please run
+
+```julia
+using Ion; Ion.comonicon_install()
+```
+
+then add `~/.julia/bin` to your `PATH`.
+
+## Installation of Julia
+
+It is recommended to use [juliaup](https://github.com/JuliaLang/juliaup) for installation of Julia with Ion.
+
+For Linux & MacOS users, copy paste the following command
+in your terminal
+
+```sh
+curl -fsSL https://install.julialang.org | sh
+```
+
+For Windows, one can use the following
+
+```sh
+winget install julia -s msstore
+```
+
 # How files are organized?
 
 Each command has their own file or folder:
