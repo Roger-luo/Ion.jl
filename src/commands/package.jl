@@ -81,7 +81,7 @@ function develop_local_deps(root_path::String, project_path::String)
 end
 
 """
-    init_all(;root_path::String=root_dir(), no_docs::Bool=false, no_examples::Bool=false)
+    initall(;root_path::String=root_dir(), no_docs::Bool=false, no_examples::Bool=false)
 
 Init all pacakge dependencies by developing
 local dependencies in `lib`.
@@ -101,7 +101,7 @@ of folders such as `lib`, `examples` and `docs`.
 - `--no-docs`: exclude `docs` folder.
 - `--no-examples`: exclude `examples` folder.
 """
-@cast function init_all(;root_path::String=root_dir(), no_docs::Bool=false, no_examples::Bool=false)
+@cast function initall(;root_path::String=root_dir(), no_docs::Bool=false, no_examples::Bool=false)
     proj_path = Pkg.project().path
 
     foreach_subpackage(root_path) do package, path

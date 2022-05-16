@@ -26,7 +26,7 @@ end
 
 function divide_tests(suites::Dict{String, String}, nprocs::Int)
     suites_procs = [Dict{String, String}() for _ in 1:nprocs]
-    
+
     n, r = divrem(length(suites), nprocs)
     nsuites_procs = [n for _ in 1:nprocs]
     if !iszero(r)
