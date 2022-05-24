@@ -1,5 +1,3 @@
-@lazy import JuliaFormatter
-
 """
     format(path::String=pwd())
 

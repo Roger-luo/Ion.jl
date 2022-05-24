@@ -3,7 +3,7 @@ module Internal
 using Pkg
 using UUIDs
 using GitHub
-using LazyModules: @lazy
+using JuliaFormatter
 # using TestEnv
 using Comonicon
 using GarishPrint

@@ -1,4 +1,5 @@
 using Ion
+Ion.command_main(String[])
 Ion.command_main(["-h"])
 Ion.command_main(["release", "-h"])
 Ion.command_main(["create", "-h"])
