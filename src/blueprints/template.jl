@@ -5,10 +5,23 @@ Julia type for a template object.
 
 # Fields
 
-- `name`: name of the template
+- `name`: name of the template.
+- `description`: description of the template.
+
+# Optional Fields
+
+- `project`: configs for Julia project.
+- `readme`: configs for README.
+- `src`: configs for `src` directory.
+- `git`: configs for `git` repository.
+- `documenter`: configs for `documenter`.
+- `license`: configs for license.
+- `tests`: configs for project tests.
+- `citation`: configs for project citations.
 """
 @blueprint struct Template
     name::String
+    description::String
     # we always have Project.toml
     project::JuliaProject = JuliaProject()
     readme::Maybe{Readme}
@@ -32,7 +45,7 @@ end
 function compile(t::Template, ctx::Context)
     nf = nfields(Template)
     for idx in 1:nf
-        fieldname(Template, idx) === :name && continue
+        fieldname(Template, idx) === [:name, :description] && continue
         blueprint = getfield(t, idx)
         isnothing(blueprint) || compile(blueprint, ctx)
     end

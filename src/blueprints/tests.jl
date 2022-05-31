@@ -27,7 +27,7 @@ function add_test_dependency(pkg_dir::AbstractString)
     path = joinpath(pkg_dir, "Project.toml")
     toml = TOML.parsefile(path)
     get!(Dict, toml, "extras")["Test"] = TEST_UUID
-    get!(Dict, toml, "targets")["Test"] = ["Test"]
+    get!(Dict, toml, "targets")["test"] = ["Test"]
     write_project_toml(path, toml)
 
     touch(joinpath(pkg_dir, "Manifest.toml"))

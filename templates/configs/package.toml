@@ -1,0 +1,8 @@
+name="package"
+description="the standard Julia package template"
+
+[src]
+[git]
+[project]
+[readme]
+[tests]

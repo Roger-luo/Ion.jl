@@ -3,6 +3,7 @@ struct TerminateCommand <: Exception end
 include("git.jl")
 include("auth.jl")
 include("registry.jl")
+include("package.jl")
 
 
 # Copied from IsURL.jl

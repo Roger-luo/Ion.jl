@@ -18,6 +18,8 @@ else
     git() = Sys.which("git")
 end
 
+julia() = joinpath(Sys.BINDIR, Base.julia_exename())
+
 include("utils/utils.jl")
 include("blueprints/blueprints.jl")
 # commands
@@ -27,6 +29,7 @@ include("commands/compat.jl")
 include("commands/create.jl")
 include("commands/package.jl")
 include("commands/format.jl")
+include("commands/doc.jl")
 # include("commands/test.jl")
 
 # fix redirect color issue
