@@ -11,5 +11,5 @@ static=true
 width=80
 dash=false
 
-[sysimg.precompile]
-execution_file=["deps/execute.jl"]
+# [sysimg.precompile]
+# execution_file=["deps/execute.jl"]
