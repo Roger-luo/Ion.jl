@@ -45,7 +45,7 @@ end
 function compile(t::Template, ctx::Context)
     nf = nfields(Template)
     for idx in 1:nf
-        fieldname(Template, idx) === [:name, :description] && continue
+        fieldname(Template, idx) in [:name, :description] && continue
         blueprint = getfield(t, idx)
         isnothing(blueprint) || compile(blueprint, ctx)
     end
